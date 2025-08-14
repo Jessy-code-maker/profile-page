@@ -129,15 +129,64 @@ padding: 20px;
 
 .U-App-1 , .U-App-2, .U-App-3 {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: var(--fresh-green);
   border-radius: 10px;
   padding: 20px;
   margin: 10px;
-  width: auto;
+  width: max-content;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.U-App-2-container , .U-App-1-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+.text-holder {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  text-align: center;
+}
+
+.U-App-btn-container {
+  display: flex;
+  flex-direction: row;
+  height: fit-content;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.U-App-btn {
+  display: flex;
+  flex-direction: row;
+  background-color: #007BFF; /* Bootstrap-style blue */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-right: 10px; /* spacing between buttons */
+}
+
+.join-btn {
+  background-color: #28a745; /* green */
+  color: white;
+  padding: 12px 30px;  /* more padding = longer button */
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 10px;
+  min-width: 100%; /* force it to be wider */
 }
 
 .M-1, .M-2, .M-3 {
