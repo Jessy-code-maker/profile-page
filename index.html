@@ -36,10 +36,10 @@
     <h2>Quick Health Stat</h2>
         <p>Patient Last Vitals</p>
     <div class="f-container">
-    <div class="f-1"><h3>Glucose</h3><p>97</p><p class="unit">mg/dl</p><p class="vital-status">in the norm</p></div>
-    <div class="f-1"><h3>Cholesterol</h3><p>85</p><p class="unit">mg/dl</p><p class="vital-status">in the norm</p></div>
-    <div class="f-1"><h3>Blood pressure</h3><p>120/50</p><p class="unit">mm/gH</p><p class="vital-status">in the norm</p></div>
-    <div class="f-1"><h3>Heart Rate</h3><p>120</p><p class="unit">BPM</p><p class="vital-status">Above the norm</p></div>
+    <div class="f-1"><h3>Glucose</h3><p>97</p><p class="unit">mg/dl</p><p class="vital-status", style="color:#41E088">in the norm</p></div>
+    <div class="f-1"><h3>Cholesterol</h3><p>85</p><p class="unit">mg/dl</p><p class="vital-status", style="color:#41E088">in the norm</p></div>
+    <div class="f-1"><h3>Blood pressure</h3><p>120/50</p><p class="unit">mm/gH</p><p class="vital-status", style="color:#41E088">in the norm</p></div>
+    <div class="f-1"><h3>Heart Rate</h3><p>120</p><p class="unit">BPM</p><p class="vital-status", style="color:#DD2C2C">Above the norm</p></div>
     </div></section>
 
 <section class="upcoming-Appointment">
@@ -54,14 +54,14 @@
         <div class="text-holder">
           <h3>Dr. Garcia Joseph</h3>
           <p>Medical Consultation</p>
-          <p>Online - Video Consultation
+          <p>Online - Video Consultation <br>
             20/08/2025 wednesday, 14:00</p>
         </div>
       </div>
       <div class="U-App-btn-container">
         <button class="join-btn">Join Consultation</button>
         <button class="U-App-btn">Reschedule</button>
-        <button class="U-App-btn">Cancel</button>
+        <button class="U-App-btn-cancel">Cancel</button>
       </div>
     </div>
 
@@ -73,13 +73,13 @@
         <div class="text-holder">
           <h3>Dr. Garcia Joseph</h3>
           <p>Medical Consultation</p>
-          <p>Online - Video Consultation
+          <p>Online - Video Consultation<br>
             20/08/2025 wednesday, 14:00</p>
         </div>
       </div>
       <div class="U-App-btn-container">
         <button class="U-App-btn">Reschedule</button>
-        <button class="U-App-btn">Cancel</button>
+        <button class="U-App-btn-cancel">Cancel</button>
       </div>
     </div>
 
@@ -158,7 +158,7 @@
         <option value="medical-history">Medical-history</option>
         <option value="prescription">Prescription</option>
         <option value="insurance-info">Insurance Info</option>
-      </select>
+      </select></div>
     <!-- Tab content -->
     <div class="tab" data-category="appointment">
       <table style="width: 100%; border-collapse: collapse;">
@@ -170,6 +170,7 @@
           <td>Cardiology</td>
           <td> 11 Jul  2025</td>
           <td>3: 00pm</td>
+          <td><button class="stat-indicator-Active">Active</button></td>
         </tr>
 </tbody>
         <tbody><tr>
@@ -177,6 +178,7 @@
           <td>Cardiology</td>
           <td> 11 Jul  2025</td>
           <td>3: 00pm</td>
+          <td><button class="stat-indicator-Active">Upcoming</button></td>
         </tr>
 </tbody>
         <tbody><tr>
@@ -184,6 +186,7 @@
           <td>Cardiology</td>
           <td> 11 Jul  2025</td>
           <td>3: 00pm</td>
+          <td><button class="stat-indicator-complete">Completed</button></td>
         </tr>
 </tbody>
         <tbody><tr>
@@ -191,6 +194,7 @@
           <td>Cardiology</td>
           <td> 11 Jul  2025</td>
           <td>3: 00pm</td>
+          <td><button class="stat-indicator-canceled">Canceled</button></td>
         </tr>
 </tbody>
 

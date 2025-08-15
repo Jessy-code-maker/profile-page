@@ -15,8 +15,9 @@
   --accent: #EDFDFC; /*indicators, UI indicators, hover effects*/
   --link:#D9F9E7;
   --highlight:#C6EDF6;
+   --text-red:#CB3939;
   --neutral-dark: #1f1f1f; /*Clean text contrast, modern headers on light backgrounds*/
-  --off-white: #fffaf3; /*Light cards, panels, or backgrounds for text-heavy sections*/
+  --white: #FFFFFF; /*Backgrounds, text, and elements requiring high contrast*/
   --fresh-green: #a3c653; /*Freshness, health, and nature,	Backgrounds, buttons, or highlights*/
 }
 
@@ -88,7 +89,7 @@ button:hover {
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: var(--off-white);
+  background-color: var(--accent);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -114,29 +115,51 @@ button:hover {
     border-radius: 10px;
 padding: 20px;
     width: max-content;
-    background-color: var(--fresh-green);
+    background-color: var(--white);
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.stat-indicator-Active, .stat-indicator-complete,.stat-indicator-canceled {
+      border:  1px solid var(--primary);
+        padding: 10px 20px;
+          border-radius: 6px;
+}
+
+.stat-indicator-Active {
+  background-color: #FEF2E5;
+  color: #CD6200;
+}
+
+.stat-indicator-complete {
+  background-color: #EBF9F1;
+  color: #1F9254;
+}
+
+.stat-indicator-canceled {
+  background-color: #FBE7E8;
+  color: #A30D11;
 }
 
 .U-App-Container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--off-white);
+  background-color: var(--accent);
    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+   margin-top: 117px;
 }
 
 .U-App-1 , .U-App-2, .U-App-3 {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
-  background-color: var(--fresh-green);
+  background-color: var(--white);
   border-radius: 10px;
   padding: 20px;
   margin: 10px;
-  width: max-content;
+  width:60%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -154,19 +177,28 @@ padding: 20px;
   text-align: center;
 }
 
+.U-App-1 p, .U-App-2 p {
+        font-size: 15px;
+         text-align: center;
+      margin-bottom: 20px;
+
+}
+
 .U-App-btn-container {
   display: flex;
   flex-direction: row;
   height: fit-content;
   flex-wrap: wrap;
   justify-content: center;
+  width: 50%;
+  margin-left: 100px;
 }
 
-.U-App-btn {
+.U-App-btn, .U-App-btn-cancel {
   display: flex;
   flex-direction: row;
-  background-color: #007BFF; /* Bootstrap-style blue */
-  color: white;
+  background-color: var(--link); 
+  color: var(--text-dark);
   padding: 10px 20px;
   border: none;
   border-radius: 6px;
@@ -174,11 +206,16 @@ padding: 20px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
   margin-right: 10px; /* spacing between buttons */
+  margin-top: 10px;
+}
+
+.U-App-btn-cancel {
+  color: var(--text-red);
 }
 
 .join-btn {
-  background-color: #28a745; /* green */
-  color: white;
+  background-color: var(--primary);
+  color: var(--text-dark);
   padding: 12px 30px;  /* more padding = longer button */
   border: none;
   border-radius: 6px;
@@ -186,6 +223,7 @@ padding: 20px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   margin-right: 10px;
+  margin-left: 10px; /* spacing between buttons */
   min-width: 100%; /* force it to be wider */
 }
 
@@ -193,7 +231,7 @@ padding: 20px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: var(--off-white);
+  background-color: var(--white);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -226,6 +264,12 @@ padding: 20px;
       background-color:var(--primary);
       color: white;
     }
+
+    .filter-bar {
+  display: none;
+  text-align: start;
+  margin: 1rem 0 1rem 4rem;
+}
 
 
     .tab {
@@ -273,7 +317,7 @@ td p {
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: var(--off-white);
+  background-color: var(--accent);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -299,7 +343,7 @@ td p {
     border-radius: 10px;
 padding: 20px;
     width: max-content;
-    background-color: var(--fresh-green);
+    background-color: var(--white);
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -318,10 +362,9 @@ padding: 20px;
       margin-bottom: 10px;
     }
 
-p{
+ p {
         font-size: 15px;
          text-align: center;
-      margin-bottom: 20px;
 
 }
 
@@ -373,3 +416,28 @@ p{
       padding: 10px 15px;
       border-radius: 5px;
     }
+
+@media screen and (max-width: 768px) {
+
+
+  .category-nav {
+    display: none;
+  }
+
+      .filter-bar {
+    display: block; 
+  }
+    
+  .filter-bar select {
+    padding: 0.5rem;
+    font-size: 1rem;
+    max-width: 300px;
+    width: 80%;
+    background-color: var(--off-white);
+  }
+
+  .filter-bar label {
+    font-weight: bold;
+    margin-right: 0.5rem;
+  }
+}
