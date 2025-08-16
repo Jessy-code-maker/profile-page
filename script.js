@@ -1,95 +1,71 @@
-    //category filtering
-// Filter dishes by category
-function showCategory(category, event) {
-  const dishes = document.querySelectorAll(".dish");
-  const buttons = document.querySelectorAll(".category-nav button");
+  //code for handling tab navigation and responsive dropdown filtering
+  function showCategory(category, event = null) {
+    const allTabs = document.querySelectorAll('.tab');
+    const buttons = document.querySelectorAll('.category-nav button');
 
-  dishes.forEach((dish) => {
-    dish.style.display =
-      category === "all" || dish.getAttribute("data-category") === category
-        ? "block"
-        : "none";
-  });
+    // Show the matching tab and hide the others
+    allTabs.forEach(tab => {
+      tab.style.display = tab.dataset.category === category ? 'block' : 'none';
+    });
 
-  buttons.forEach((btn) => btn.classList.remove("active"));
+    // Highlight the active button
+    buttons.forEach(btn => btn.classList.remove('active'));
+    if (event && event.target && event.target.tagName === 'BUTTON') {
+      event.target.classList.add('active');
+    }
 
-  if (event && event.target) {
-    event.target.classList.add("active");
-  }
-}
-
-window.onload = function () {
-  const saved = localStorage.getItem("cartItems");
-  if (saved) {
-    cart = JSON.parse(saved);
-    renderCart();
-  }
-};
-
-function filterDishes() {
-  const selectedCategory = document.getElementById("category-select").value;
-  const dishes = document.querySelectorAll(".dish");
-  dishes.forEach((dish) => {
-    const category = dish.getAttribute("data-category");
-    dish.style.display =
-      selectedCategory === "all" || category === selectedCategory
-        ? "block"
-        : "none";
-  });
-}
-// Setup responsive filter for small screens
-function setupResponsiveFilter() {
-  const categorySelect = document.getElementById("category-select");
-  if (!categorySelect) return; // Exit if no select element found
-
-  const mediaQuery = window.matchMedia("(max-width: 768px)");
-
-  function handleScreenChange(e) {
-    if (e.matches) {
-      // Small screen: attach filter on change event
-      categorySelect.addEventListener("change", filterDishes);
-      filterDishes(); // Run once on load for initial filtering
-    } else {
-      // Large screen: remove event listener and show all dishes
-      categorySelect.removeEventListener("change", filterDishes);
-      const dishes = document.querySelectorAll(".dish");
-      dishes.forEach((dish) => (dish.style.display = "block"));
+    // Sync dropdown selection
+    const select = document.getElementById('category-select');
+    if (select && select.value !== category) {
+      select.value = category;
     }
   }
 
-  // Listen for screen size changes dynamically
-  handleScreenChange(mediaQuery);
-  mediaQuery.addEventListener("change", handleScreenChange);
-}
+  function filterByDropdown() {
+    const selectedCategory = document.getElementById('category-select').value;
+    showCategory(selectedCategory);
+  }
 
-function setupResponsiveCategoryButtons() {
-  const buttons = document.querySelectorAll(".category-nav button");
-  if (buttons.length === 0) return;
+  function setupResponsiveFilter() {
+    const categorySelect = document.getElementById("category-select");
+    const mediaQuery = window.matchMedia("(max-width: 768px)");
 
-  // Always attach click listeners
-  buttons.forEach((button) => {
-    if (!button.dataset.listenerAttached) {
-      button.addEventListener("click", function (event) {
-        const category =
-          button.getAttribute("data-category") ||
-          button.textContent();
-        showCategory(category, event);
-      });
-      button.dataset.listenerAttached = "true"; // Prevent double-binding
+    function handleScreenChange(e) {
+      if (e.matches) {
+        categorySelect.addEventListener("change", filterByDropdown);
+        filterByDropdown();
+      } else {
+        categorySelect.removeEventListener("change", filterByDropdown);
+      }
     }
+
+    handleScreenChange(mediaQuery);
+    mediaQuery.addEventListener("change", handleScreenChange);
+  }
+
+  function setupCategoryButtons() {
+    const buttons = document.querySelectorAll(".category-nav button");
+
+    buttons.forEach(button => {
+      if (!button.dataset.listenerAttached) {
+        button.addEventListener("click", (event) => {
+          const category = button.getAttribute("data-category");
+          showCategory(category, event);
+        });
+        button.dataset.listenerAttached = "true";
+      }
+    });
+  }
+
+  window.addEventListener("DOMContentLoaded", () => {
+    setupResponsiveFilter();
+    setupCategoryButtons();
+
+    // Show the first tab by default (or "appointment")
+    showCategory('appointment');
   });
 
-  // Listen for screen size changes dynamically
-  handleScreenChange(mediaQuery);
-  mediaQuery.addEventListener("change", handleScreenChange);
-}
-
-window.addEventListener("DOMContentLoaded", () => {
-  setupResponsiveFilter();
-  setupResponsiveCategoryButtons();
-});
-
-
+  // Handle insurance form submission
   document.getElementById('insuranceForm').addEventListener('submit', function(e) {
       e.preventDefault(); // prevent actual form submission
 
@@ -116,38 +92,30 @@ window.addEventListener("DOMContentLoaded", () => {
      e.target.reset();
     });
 
-
-    //this is important
-
     // Toggle edit mode for profile
+  let isEditing = false;
 
-     let editMode = true;
+  function toggleEditSave(button) {
+    const editableElements = document.querySelectorAll('.editable');
+    const displayOnlyElements = document.querySelectorAll('.display-only');
 
-  function toggleEdit() {
-    const editables = document.querySelectorAll('.editable');
-    const displays = document.querySelectorAll('.display-only');
-    const nameInput = document.getElementById('name');
-    const healthID = document.getElementById('health-ID');
-    const gender = document.getElementById('gender');
-    const age = document.getElementById('age');
-    const bloodGroup = document.getElementById('bloodGroup');
+    if (!isEditing) {
+      // Switch to edit mode
+      editableElements.forEach(el => el.style.display = 'block');
+      displayOnlyElements.forEach(el => el.style.display = 'none');
+      button.textContent = 'Save Profile';
+      isEditing = true;
+    } else {
+      // Save data and switch to view mode
+      document.getElementById('out-name').textContent = document.getElementById('name').value;
+      document.getElementById('out-healthID').textContent = document.getElementById('health-ID').value;
+      document.getElementById('out-gender').textContent = document.getElementById('gender').value;
+      document.getElementById('out-age').textContent = document.getElementById('age').value;
+      document.getElementById('out-bloodGroup').textContent = document.getElementById('bloodGroup').value;
 
-    if (editMode) {
-      // Save data from inputs to display
-      document.getElementById('out-name').textContent = nameInput.value;
-      document.getElementById('out-healthID').textContent = healthID.value;
-      document.getElementById('out-gender').textContent = gender.value;
-      document.getElementById('out-age').textContent = age.value;
-      document.getElementById('out-bloodGroup').textContent = bloodGroup.value;
+      editableElements.forEach(el => el.style.display = 'none');
+      displayOnlyElements.forEach(el => el.style.display = 'block');
+      button.textContent = 'Edit Profile';
+      isEditing = false;
     }
-
-    // Toggle visibility
-    editables.forEach(el => el.style.display = editMode ? 'none' : 'block');
-    displays.forEach(el => el.style.display = editMode ? 'block' : 'none');
-
-    // Toggle mode
-    editMode = !editMode;
-
-    // Change button text
-    document.querySelector('.profile-btn').textContent = editMode ? 'Edit Profile' : 'Save Profile';
   }
