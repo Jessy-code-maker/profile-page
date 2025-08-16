@@ -115,3 +115,39 @@ window.addEventListener("DOMContentLoaded", () => {
       //clear form
      e.target.reset();
     });
+
+
+    //this is important
+
+    // Toggle edit mode for profile
+
+     let editMode = true;
+
+  function toggleEdit() {
+    const editables = document.querySelectorAll('.editable');
+    const displays = document.querySelectorAll('.display-only');
+    const nameInput = document.getElementById('name');
+    const healthID = document.getElementById('health-ID');
+    const gender = document.getElementById('gender');
+    const age = document.getElementById('age');
+    const bloodGroup = document.getElementById('bloodGroup');
+
+    if (editMode) {
+      // Save data from inputs to display
+      document.getElementById('out-name').textContent = nameInput.value;
+      document.getElementById('out-healthID').textContent = healthID.value;
+      document.getElementById('out-gender').textContent = gender.value;
+      document.getElementById('out-age').textContent = age.value;
+      document.getElementById('out-bloodGroup').textContent = bloodGroup.value;
+    }
+
+    // Toggle visibility
+    editables.forEach(el => el.style.display = editMode ? 'none' : 'block');
+    displays.forEach(el => el.style.display = editMode ? 'block' : 'none');
+
+    // Toggle mode
+    editMode = !editMode;
+
+    // Change button text
+    document.querySelector('.profile-btn').textContent = editMode ? 'Edit Profile' : 'Save Profile';
+  }
