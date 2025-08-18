@@ -65,57 +65,26 @@
     showCategory('appointment');
   });
 
-  // Handle insurance form submission
-  document.getElementById('insuranceForm').addEventListener('submit', function(e) {
-      e.preventDefault(); // prevent actual form submission
-
-      // Get form values
-      const provider = document.getElementById('provider').value;
-      const policy = document.getElementById('policy-number').value;
-      const coverage = document.getElementById('coverage').value;
-      const expiry = document.getElementById('expiry-date').value;
-      const contact = document.getElementById('contact').value;
-      const email = document.getElementById('email').value;
-
-      // Fill submitted data section
-      document.getElementById('out-provider').textContent = provider;
-      document.getElementById('out-policy-number').textContent = policy;
-      document.getElementById('out-coverage').textContent = coverage;
-      document.getElementById('out-expiry-date').textContent = expiry;
-      document.getElementById('out-contact').textContent = contact;
-      document.getElementById('out-email').textContent = email;
-
-      // Show the submitted data section
-      document.getElementById('submittedData').style.display = 'block';
-
-      //clear form
-     e.target.reset();
-    });
-
     // Toggle edit mode for profile
-  let isEditing = false;
-
   function toggleEditSave(button) {
+    const displayElements = document.querySelectorAll('.display-only');
     const editableElements = document.querySelectorAll('.editable');
-    const displayOnlyElements = document.querySelectorAll('.display-only');
+    const isEditing = button.textContent === "Edit Profile";
 
-    if (!isEditing) {
-      // Switch to edit mode
-      editableElements.forEach(el => el.style.display = 'block');
-      displayOnlyElements.forEach(el => el.style.display = 'none');
-      button.textContent = 'Save Profile';
-      isEditing = true;
+    // Toggle visibility
+    displayElements.forEach(el => el.style.display = isEditing ? 'none' : 'block');
+    editableElements.forEach(el => el.style.display = isEditing ? 'block' : 'none');
+
+    if (isEditing) {
+      button.textContent = "Save Profile";
     } else {
-      // Save data and switch to view mode
+      // Update display fields with form values
       document.getElementById('out-name').textContent = document.getElementById('name').value;
       document.getElementById('out-healthID').textContent = document.getElementById('health-ID').value;
       document.getElementById('out-gender').textContent = document.getElementById('gender').value;
       document.getElementById('out-age').textContent = document.getElementById('age').value;
       document.getElementById('out-bloodGroup').textContent = document.getElementById('bloodGroup').value;
 
-      editableElements.forEach(el => el.style.display = 'none');
-      displayOnlyElements.forEach(el => el.style.display = 'block');
-      button.textContent = 'Edit Profile';
-      isEditing = false;
+      button.textContent = "Edit Profile";
     }
   }

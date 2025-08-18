@@ -38,6 +38,72 @@ header img {
   margin-left: 104px;
 }
 
+/* Base hamburger style */
+.hamburger {
+  display: inline-block;
+  cursor: pointer;
+  width: 30px;
+  height: 25px;
+  position: relative;
+  z-index: 2; /* keeps it above the menu */
+  margin: 10px;
+}
+
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 4px;
+  background: black;
+  margin: 4px 0;
+  border-radius: 2px;
+  transition: 0.4s ease;
+}
+
+/* Transform to X when checked */
+#menu-toggle:checked + .hamburger span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+#menu-toggle:checked + .hamburger span:nth-child(2) {
+  opacity: 0;
+}
+
+#menu-toggle:checked + .hamburger span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+.menu-toggle {
+  display: none;
+}
+
+.nav-menu {
+  display: none;
+  position: absolute;
+  top: 86px;
+  left: 0;
+  width: 100%;
+  background: var(--primary-3);
+  padding: 10px;
+}
+
+  .nav-menu li {
+    position: sticky;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+    align-items: center;
+  }
+
+/* Show menu when checked */
+#menu-toggle:checked ~ .nav-menu {
+  display: block;
+}
+
+.logo {
+  display: flex;
+  justify-content: space-between;
+}
+
 header h1 {
   display: flex;
   justify-content: center;
@@ -51,7 +117,7 @@ header h1 {
   flex-direction: row;
   margin: 80px;
   padding: 20px;
-  gap: 50px;
+  justify-content: space-evenly;
 }
 
 .profile-container {
@@ -60,15 +126,22 @@ header h1 {
   align-items: center;
   padding: 20px;
   border-radius: 10px;
+  width: 50%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .profile-container img {
-  border-radius: 100px;
+  border-radius: 200px;
+  width: 50%;
+  height: 60%;
 }
 
 .profile-name {
   margin-top: 10px;
+}
+
+#out-name {
+  width: 12.5rem;
 }
 
 .text-container {
@@ -256,8 +329,7 @@ select,
   height: fit-content;
   flex-wrap: wrap;
   justify-content: center;
-  width: 50%;
-  margin-left: 100px;
+  width: 100%;
 }
 
 .U-App-btn,
@@ -274,6 +346,7 @@ select,
   transition: background-color 0.3s ease, transform 0.2s ease;
   margin-right: 10px; /* spacing between buttons */
   margin-top: 10px;
+  justify-content: space-evenly;
 }
 
 .U-App-btn-cancel {
@@ -311,13 +384,13 @@ select,
 .M-4 {
   margin-right: 50px;
   margin-left: 50px;
-  height: 100px;
-  width: 800px;
+  height: 227px;
+  width: 70%;
   display: flex;
   align-items: center;
   background-color: var(--white);
   margin-bottom: 20px;
-  padding: 15px;
+  padding: 20px;
   border: 1px solid #ddd;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -326,10 +399,12 @@ select,
 
 .M-1 img,
 .M-2 img,
-.M-3 img {
-  width: 100px;
-  height: auto;
+.M-3 img,
+.M-4 img {
+  width: 127px;
+  height: 111px;
   border-radius: 10px;
+  margin:0 20px
 }
 
 /* Container */
@@ -343,14 +418,20 @@ select,
   padding-bottom: 10px;
 }
 
+.time {
+  font-size: 32px;
+  width: 70%;
+}
+
 .M-text-container {
   flex: 1;
   margin: 15px;
 }
 
 #confirmSubmit {
-  height: 24px;
-  width: 24px;
+  height: 42px;
+  width: 42px;
+  margin-right: 20px;
   accent-color: #2ecc71;
   cursor: pointer;
 }
