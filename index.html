@@ -30,7 +30,6 @@
             <label for="name"><strong>Name</strong></label>
             <input type="text" id="name" name="name" value="Mrs Amaka Eze" required />
           </div>
-
           <button class="profile-btn" onclick="toggleEditSave(this)">Edit Profile</button>
         </div>
 
@@ -152,6 +151,7 @@
             </div>
           </div>
           <div class="U-App-btn-container">
+            <button class="join-btn">Join Consultation</button>
             <button class="U-App-btn">Reschedule</button>
             <button class="U-App-btn-cancel">Cancel</button>
           </div>
@@ -177,8 +177,35 @@
             </label>
           </div>
         </div>
-        <div class="M-2">
+         <div class="M-2">
           <img src="medication/capsule.jpg" alt="capsule">
+          <div class="M-text-container">
+            <h3>Zinc - 50mg</h3>
+            <p>Before Eating . 1 capsule</p>
+            <p>14:00</p>
+          </div>
+          <div class="insurance-1">
+            <label>
+              <input type="checkbox" id="confirmSubmit">
+            </label>
+          </div>
+        </div>
+        <p>12:00AM</p>
+         <div class="M-3">
+          <img src="medication/capsule.jpg" alt="capsule">
+          <div class="M-text-container">
+            <h3>Zinc - 50mg</h3>
+            <p>Before Eating . 1 capsule</p>
+            <p>14:00</p>
+          </div>
+          <div class="insurance-1">
+            <label>
+              <input type="checkbox" id="confirmSubmit">
+            </label>
+          </div>
+        </div>
+        <div class="M-4">
+          <img src="medication/liquid.png" alt="capsule">
           <div class="M-text-container">
             <h3>Zinc - 50mg</h3>
             <p>Before Eating . 1 capsule</p>
@@ -199,7 +226,6 @@
         <button class="appointment" data-category="appointment">Appointment</button>
         <button data-category="medical-history">Medical-history</button>
         <button data-category="prescription">Prescription</button>
-        <button data-category="insurance-info">Insurance Info</button>
       </div>
       <!-- Responsive Dropdown Filter for Small Screens -->
       <div class="filter-bar">
@@ -208,7 +234,6 @@
           <option value="appointment">Appointment</option>
           <option value="medical-history">Medical-history</option>
           <option value="prescription">Prescription</option>
-          <option value="insurance-info">Insurance Info</option>
         </select>
       </div>
       <!-- Tab content -->
